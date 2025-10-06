@@ -6,7 +6,7 @@ use std::{
 
 use socket2::{Domain, Socket, Type};
 
-static RESP: &[u8] = b"HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: 49\r\n\r\n<html><body><h1>CORE CHALLENGE</h1></body></html>";
+static RESP: &[u8] = b"HTTP/1.1 200 OK\r\nContent-Length: 49\r\n\r\n<html><body><h1>CORE CHALLENGE</h1></body></html>";
 
 fn main() -> Result<()> {
     let addr: SocketAddr = "127.0.0.1:8080".parse().expect("invalid socket address");
