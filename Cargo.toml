@@ -4,8 +4,12 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-num_cpus = "1.17.0"
 socket2 = { version = "0.6.0", features = ["all"] }
+tokio = { version = "1.47.1", features = ["full"], optional = true }
+
+[features]
+default = []
+async-rt = ["tokio"]
 
 [profile.release]
 opt-level = 3
