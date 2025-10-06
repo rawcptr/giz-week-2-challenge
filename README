@@ -6,7 +6,8 @@ dependencies: rust, uv
 run the program:
 
 ```
-cargo run --release
+cargo run --release # synchronous thread-per-connection model
+cargo run --release --features async-rt # single-threaded asynchronous tokio-backed model
 ```
 
 run the benchmark
@@ -15,9 +16,35 @@ run the benchmark
 uv run benchmark.py
 ```
 
-benchmark results on M4
+------------------------------
+benchmark results (synchronous)
+-------------------------------
 
-```
-Completed 8192 requests in 0.370 seconds
+Completed 8192 requests in 0.364 seconds
 Successful responses (status 200 and body matched): 8192
-```
+Running 5s test @ http://localhost:8080/
+  16 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   586.63us    1.24ms  41.92ms   97.60%
+    Req/Sec    12.91k     1.61k   22.71k    77.33%
+  1048235 requests in 5.10s, 87.97MB read
+Requests/sec: 205536.19
+Transfer/sec:     17.25MB
+
+
+--------------------------------
+benchmark results (asynchronous)
+--------------------------------
+
+Completed 8192 requests in 0.348 seconds
+Successful responses (status 200 and body matched): 8192
+Running 5s test @ http://localhost:8080/
+  16 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   374.33us   38.18us   1.99ms   93.40%
+    Req/Sec    15.15k   356.89    15.46k    95.96%
+  1230009 requests in 5.10s, 103.23MB read
+Requests/sec: 241185.19
+Transfer/sec:     20.24MB
+
+
