@@ -1,0 +1,7 @@
+/target
+.venv/
+.vscode/
+
+*.svg
+*.nu
+*.log

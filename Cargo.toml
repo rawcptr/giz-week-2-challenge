@@ -1,0 +1,16 @@
+[package]
+name = "giz-week-2-challenge"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+num_cpus = "1.17.0"
+socket2 = { version = "0.6.0", features = ["all"] }
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+# strip = "symbols"
+debug = true

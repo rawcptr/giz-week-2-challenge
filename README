@@ -1,0 +1,23 @@
+giz week 2 challenge
+====================
+
+dependencies: rust, uv
+
+run the program:
+
+```
+cargo run --release
+```
+
+run the benchmark
+
+```
+uv run benchmark.py
+```
+
+benchmark results on M4
+
+```
+Completed 8192 requests in 0.370 seconds
+Successful responses (status 200 and body matched): 8192
+```
