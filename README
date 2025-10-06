@@ -16,7 +16,7 @@ run the benchmark
 uv run benchmark.py
 ```
 
-------------------------------
+-------------------------------
 benchmark results (synchronous)
 -------------------------------
 
