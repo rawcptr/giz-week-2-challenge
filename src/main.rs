@@ -22,11 +22,23 @@ fn main() -> Result<()> {
     Ok(())
 }
 
-#[rustfmt::skip]
 fn handle_connection(mut stream: TcpStream) -> Result<()> {
     let mut buf = [0u8; 128];
+    let mut used = 0usize;
     loop {
-        if stream.read(&mut buf)? == 0 { return Ok(()); }
-        stream.write_all(RESP)?;
+        let read = stream.read(&mut buf[used..])?;
+        if read == 0 {
+            return Ok(());
+        }
+        used += read;
+        if buf[..used]
+            .windows(4)
+            .position(|w| w == b"\r\n\r\n")
+            .map(|i| i + 4)
+            .is_some()
+        {
+            stream.write_all(RESP)?;
+            used = 0;
+        }
     }
 }
